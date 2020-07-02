@@ -333,14 +333,14 @@ uis.controller('uiSelectCtrl',
     }
 
     if (!isDisabled && disabledItemIndex > -1) {
-      disabledItems.splice(disabledItemIndex, 0);
+      disabledItems.splice(disabledItemIndex, 1);
     }
   }
 
   function _isItemDisabled(item) {
     return disabledItems.indexOf(item) > -1;
   }
-  
+
   ctrl.isDisabled = function(itemScope) {
 
     if (!ctrl.open) return;
@@ -348,7 +348,7 @@ uis.controller('uiSelectCtrl',
     var item = itemScope[ctrl.itemProperty];
     var itemIndex = ctrl.items.indexOf(item);
     var isDisabled = false;
-    
+
     if (itemIndex >= 0 && (angular.isDefined(ctrl.disableChoiceExpression) || ctrl.multiple)) {
 
       if (item.isTag) return false;
@@ -360,7 +360,7 @@ uis.controller('uiSelectCtrl',
       if (!isDisabled && angular.isDefined(ctrl.disableChoiceExpression)) {
         isDisabled = !!(itemScope.$eval(ctrl.disableChoiceExpression));
       }
-      
+
       _updateItemDisabled(item, isDisabled);
     }
 
@@ -474,7 +474,7 @@ uis.controller('uiSelectCtrl',
     }
   };
 
-  // Set default function for locked choices - avoids unnecessary 
+  // Set default function for locked choices - avoids unnecessary
   // logic if functionality is not being used
   ctrl.isLocked = function () {
     return false;
@@ -486,7 +486,7 @@ uis.controller('uiSelectCtrl',
 
   function _initaliseLockedChoices(doInitalise) {
     if(!doInitalise) return;
-    
+
     var lockedItems = [];
 
     function _updateItemLocked(item, isLocked) {
@@ -496,7 +496,7 @@ uis.controller('uiSelectCtrl',
         }
 
       if (!isLocked && lockedItemIndex > -1) {
-        lockedItems.splice(lockedItemIndex, 0);
+        lockedItems.splice(lockedItemIndex, 1);
       }
     }
 
@@ -520,7 +520,7 @@ uis.controller('uiSelectCtrl',
       return isLocked;
     };
   }
-  
+
 
   var sizeWatch = null;
   var updaterScheduled = false;
